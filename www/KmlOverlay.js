@@ -20,7 +20,7 @@ window.addEventListener('WebComponentsReady', function () {
 var KmlOverlay = function (map, kmlId, camera, kmlData, kmlOverlayOptions) {
   BaseClass.apply(this);
   
-  AppDebugTexto += "kmlData1: "+kmlData.toString()+'<BR>';
+  AppDebugTexto += "kmlData1: "+JSON.stringify(kmlData)+'<BR>';
     
   var self = this;
   //self.set('visible', kmlOverlayOptions.visible === undefined ? true : kmlOverlayOptions.visible);
@@ -246,9 +246,11 @@ var KmlOverlay = function (map, kmlId, camera, kmlData, kmlOverlayOptions) {
     } else if (overlay instanceof BaseClass && overlay.type in eventNames) {
       overlay.on(eventNames[overlay.type], onOverlayClick);
     }
+    
+    AppDebugTexto += "kmlData2: "+JSON.stringify(kmlData)+'<BR>';
   };
   
-  AppDebugTexto += "kmlData2: "+kmlData.toString()+'<BR>';
+  AppDebugTexto += "kmlData3: "+kmlData.toString()+'<BR>';
   
   kmlData.forEach(seekOverlays);
 
