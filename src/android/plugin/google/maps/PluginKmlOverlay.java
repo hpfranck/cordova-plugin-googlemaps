@@ -75,7 +75,7 @@ public class PluginKmlOverlay extends MyPlugin implements MyPluginInterface {
             !urlStr.startsWith("../")) {
           urlStr = "./" + urlStr;
         }
-
+/*
         if (currentPageUrl.startsWith("http://localhost") ||
             currentPageUrl.startsWith("http://127.0.0.1")) {
           if (urlStr.contains("://")) {
@@ -85,7 +85,7 @@ public class PluginKmlOverlay extends MyPlugin implements MyPluginInterface {
             urlStr = "file:///android_asset/www/".concat(urlStr);
           }
         }
-
+*/
 
         if (urlStr.startsWith("./")  || urlStr.startsWith("../")) {
           urlStr = urlStr.replace("././", "./");
