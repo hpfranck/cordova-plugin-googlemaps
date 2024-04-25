@@ -1017,6 +1017,49 @@ Map.prototype.addKmlOverlay = function(kmlOverlayOptions, callback) {
     } else {
       return new Promise(resolver);
     }
+
+  } else if (kmlOverlayOptions.data) {    
+
+   var invisible_dot = self.get('invisible_dot');
+    if (!invisible_dot || invisible_dot._isRemoved) {
+      // Create an invisible marker for kmlOverlay
+      self.set('invisible_dot', self.addMarker({
+        position: {
+          lat: 0,
+          lng: 0
+        },
+        icon: 'skyblue',
+        visible: false
+      }));
+    }
+    if ('icon' in kmlOverlayOptions) {
+      self.get('invisible_dot').setIcon(kmlOverlayOptions.icon);
+    }
+
+    var resolver = function(resolve, reject) {
+
+      var loader = new KmlLoader(self, self.exec, kmlOverlayOptions);
+      loader.parseKmlFile(function(camera, kmlData) {
+        kmlData = kmlOverlayOptions.data;
+        if (kmlData instanceof BaseClass) {
+          kmlData = new BaseArrayClass([kmlData]);
+        }
+        var kmlId = 'kmloverlay_' + Math.floor(Math.random() * Date.now());
+        var kmlOverlay = new KmlOverlay(self, kmlId, camera, kmlData, kmlOverlayOptions);
+        self.OVERLAYS[kmlId] = kmlOverlay;
+        resolve.call(self, kmlOverlay);
+      }, reject);
+
+    };
+
+    if (typeof callback === 'function') {
+      resolver(callback, self.errorHandler);
+    } else {
+      return new Promise(resolver);
+    }
+
+    
+    
   } else {
 
     if (typeof callback === 'function') {
