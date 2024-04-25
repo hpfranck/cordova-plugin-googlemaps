@@ -97,9 +97,11 @@ public class PluginKmlOverlay extends MyPlugin implements MyPluginInterface {
         }
 
         // Avoid WebViewLocalServer (because can not make a connection for some reason)
+        /*
         if (urlStr.contains("http://localhost") || urlStr.contains("http://127.0.0.1")) {
           urlStr = urlStr.replaceAll("^http://[^\\/]+\\//", "file:///android_asset/www/");
         }
+        */
 
 
         final String finalUrl = urlStr;
