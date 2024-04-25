@@ -19,7 +19,9 @@ window.addEventListener('WebComponentsReady', function () {
  *****************************************************************************/
 var KmlOverlay = function (map, kmlId, camera, kmlData, kmlOverlayOptions) {
   BaseClass.apply(this);
-
+  
+  AppDebugTexto += kmlData+'<BR>';
+    
   var self = this;
   //self.set('visible', kmlOverlayOptions.visible === undefined ? true : kmlOverlayOptions.visible);
   //self.set('zIndex', kmlOverlayOptions.zIndex || 0);
