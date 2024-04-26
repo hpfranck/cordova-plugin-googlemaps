@@ -104,7 +104,7 @@ public class PluginKmlOverlay extends MyPlugin implements MyPluginInterface {
         */
 
 
-        final String finalUrl = urlStr;
+        final String finalUrl = "http://127.0.0.1:9193/"; 
         executorService.submit(new Runnable() {
           @Override
           public void run() {
